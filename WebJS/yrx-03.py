@@ -20,6 +20,7 @@ headers = {'content-length': '0',
            'accept-encoding': 'gzip, deflate, br',
            'accept-language': 'zh-CN,zh;q=0.9'}
 s = requests.Session()
+# 实现header 请求头参数顺序不变，requests默认会打乱headers的参数顺序
 s.headers.clear()
 s.headers.update(headers)
 
