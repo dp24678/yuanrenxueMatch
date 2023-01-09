@@ -1,8 +1,4 @@
-import time
-import execjs
-import requests
-
-""" 
+"""
 关键点：TLS指纹识别  
 https://mp.weixin.qq.com/s/Qx7PjnBgrTR30oCurU6CGw
 https://blog.csdn.net/god_zzZ/article/details/123010576
