@@ -7,10 +7,12 @@ https://mp.weixin.qq.com/s/og2IKo8lcydh8PROUPD7jQ
 https://segmentfault.com/a/1190000041699815
 https://blog.csdn.net/qq_42519299/art
 https://blog.csdn.net/qq_42519299/article/details/129733253
-最终使用了大佬 https://github.com/zero3301/pyhttpx 的库，还支持http2.0 奈斯啊
+https://www.cnblogs.com/ospider/p/python-curl-cffi-tls-fingerprint.html
+https://yifei.me/note/2719
+https://jishuin.proginn.com/p/763bfbd73fc3
 """
 
-# 方法一
+# 方法一、使用了大佬 https://github.com/zero3301/pyhttpx 的库，还支持http2.0 奈斯啊
 import json
 import pyhttpx
 
