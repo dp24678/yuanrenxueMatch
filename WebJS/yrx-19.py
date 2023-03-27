@@ -9,6 +9,8 @@ https://blog.csdn.net/qq_42519299/art
 https://blog.csdn.net/qq_42519299/article/details/129733253
 最终使用了大佬 https://github.com/zero3301/pyhttpx 的库，还支持http2.0 奈斯啊
 """
+
+# 方法一
 import json
 import pyhttpx
 
@@ -16,45 +18,6 @@ import pyhttpx
 cookies = {
     'sessionid': 'jmr860ywwaiw7rvhbnk928clcsbto010'
 }
-headers = {
-    # 'authority': 'match.yuanrenxue.com',
-    # 'accept': 'application/json, text/javascript, */*; q=0.01',
-    # 'accept-language': 'zh-CN,zh;q=0.9',
-    # 'cache-control': 'no-cache',
-    # 'pragma': 'no-cache',
-    # 'referer': 'https://match.yuanrenxue.com/match/19',
-    # 'sec-ch-ua': '"Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"',
-    # 'sec-ch-ua-mobile': '?0',
-    # 'sec-ch-ua-platform': '"Windows"',
-    # 'sec-fetch-dest': 'empty',
-    # 'sec-fetch-mode': 'cors',
-    # 'sec-fetch-site': 'same-origin',
-    'user-agent': 'yuanrenxue.project',
-    'x-requested-with': 'XMLHttpRequest',
-}
-sess = pyhttpx.HttpSession(browser_type='chrome')
-prices = []
-# for i in range(1, 6):
-#     params = {
-#         'page': str(i),
-#     }
-#     response = sess.get('https://match.yuanrenxue.com/api/match/19', params=params, headers=headers, cookies=cookies)
-#     print(response.text)
-#     prices.extend([i['value'] for i in json.loads(response.text)['data']])
-#
-# print(prices)
-# print(len(prices))
-# print(sum(prices))
-
-# 方法二
-
-from curl_cffi import requests
-
-
-cookies = {
-    'sessionid': 'jmr860ywwaiw7rvhbnk928clcsbto010'
-}
-
 headers = {
     'authority': 'match.yuanrenxue.com',
     'accept': 'application/json, text/javascript, */*; q=0.01',
@@ -71,13 +34,13 @@ headers = {
     'user-agent': 'yuanrenxue.project',
     'x-requested-with': 'XMLHttpRequest',
 }
-
+sess = pyhttpx.HttpSession(browser_type='chrome')
 prices = []
 for i in range(1, 6):
     params = {
         'page': str(i),
     }
-    response = requests.get('https://match.yuanrenxue.com/api/match/19', params=params, headers=headers, cookies=cookies,  allow_redirects=False, impersonate="chrome110")
+    response = sess.get('https://match.yuanrenxue.com/api/match/19', params=params, headers=headers, cookies=cookies)
     print(response.text)
     prices.extend([i['value'] for i in json.loads(response.text)['data']])
 
@@ -85,8 +48,49 @@ print(prices)
 print(len(prices))
 print(sum(prices))
 
+# 方法二、使用 curl_cffi库
+
+# from curl_cffi import requests
+#
+#
+# cookies = {
+#     'sessionid': 'jmr860ywwaiw7rvhbnk928clcsbto010'
+# }
+#
+# headers = {
+#     'authority': 'match.yuanrenxue.com',
+#     'accept': 'application/json, text/javascript, */*; q=0.01',
+#     'accept-language': 'zh-CN,zh;q=0.9',
+#     'cache-control': 'no-cache',
+#     'pragma': 'no-cache',
+#     'referer': 'https://match.yuanrenxue.com/match/19',
+#     'sec-ch-ua': '"Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"',
+#     'sec-ch-ua-mobile': '?0',
+#     'sec-ch-ua-platform': '"Windows"',
+#     'sec-fetch-dest': 'empty',
+#     'sec-fetch-mode': 'cors',
+#     'sec-fetch-site': 'same-origin',
+#     'user-agent': 'yuanrenxue.project',
+#     'x-requested-with': 'XMLHttpRequest',
+# }
+#
+# prices = []
+# for i in range(1, 6):
+#     params = {
+#         'page': str(i),
+#     }
+#     response = requests.get('https://match.yuanrenxue.com/api/match/19', params=params, headers=headers, cookies=cookies,  allow_redirects=False, impersonate="chrome110")
+#     print(response.text)
+#     prices.extend([i['value'] for i in json.loads(response.text)['data']])
+#
+# print(prices)
+# print(len(prices))
+# print(sum(prices))
+
 
 # 方法三, 此题场景不适合 但是其他验证jar3的测试可用
+
+
 # 后测试可用 但需要将
 
 # from requests.adapters import HTTPAdapter
